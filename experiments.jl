@@ -11,7 +11,7 @@ for backfire in [0.2,0.4,0.6], follow in [0.2,0.4], unfollow in [0.4,0.6]
         network = cfg_net(
             agent_count = 10000,
             m0 = 50,
-            growth_rate = 3,
+            growth_rate = 50,
             new_follows = 10
         ), simulation = cfg_sim(
             n_iter = 100,
@@ -39,14 +39,9 @@ end
 
 configbatch[12]
 
-simulate(configbatch[12], batch_desc = "xmasbatchtest4_run12")
+simulate(configbatch, batch_desc = "xmasbatch")
 
-convert:
+convert_results()
 
-using JLD
-using JLD2
-using LightGraphs
-test = load("./results/xmasbatchtest4_run1.jld2")
-test
 
 [agent.opinion for agent in test["xmasbatchtest_run1"][3][2] if !agent.active]
